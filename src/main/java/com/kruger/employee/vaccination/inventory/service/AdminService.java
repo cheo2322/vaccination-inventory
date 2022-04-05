@@ -31,11 +31,12 @@ public class AdminService {
         .build();
   }
 
-  public void updateDto(EmployeeDto employeeDto, String id) {
+  public void updateEmployee(EmployeeDto employeeDto, String id) {
     Employee employee = employeeRepository.findByIdentification(Long.valueOf(id))
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
     employeeMapper.updateEmployeeFromDto(employeeDto, employee);
+    employee.getVaccines().add(employeeDto.getVaccine());
     employeeRepository.save(employee);
   }
 

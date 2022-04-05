@@ -1,5 +1,8 @@
 package com.kruger.employee.vaccination.inventory.domain.dto;
 
+import com.kruger.employee.vaccination.inventory.entity.VaccinationState;
+import com.kruger.employee.vaccination.inventory.entity.Vaccine;
+import java.time.LocalDate;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,4 +31,10 @@ public class EmployeeDto {
 
   @Email
   private String email;
+
+  private LocalDate bornDate;
+  private String address;
+  private String mobilePhone;
+  private VaccinationState vaccinationState;
+  private Vaccine vaccine;
 }
