@@ -33,7 +33,7 @@ public class AdminController {
   @PatchMapping("/employees/{id}")
   @ResponseStatus(HttpStatus.OK)
   public void patchEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable String id) {
-    adminService.updateDto(employeeDto, id);
+    adminService.updateEmployee(employeeDto, id);
   }
 
   @GetMapping("/employees/{id}")
