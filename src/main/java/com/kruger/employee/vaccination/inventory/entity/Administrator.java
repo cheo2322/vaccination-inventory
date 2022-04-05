@@ -1,4 +1,4 @@
-package com.kruger.employee.vaccination.inventory.domain;
+package com.kruger.employee.vaccination.inventory.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

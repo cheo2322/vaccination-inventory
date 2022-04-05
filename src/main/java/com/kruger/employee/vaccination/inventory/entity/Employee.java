@@ -1,4 +1,4 @@
-package com.kruger.employee.vaccination.inventory.domain;
+package com.kruger.employee.vaccination.inventory.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,8 +20,15 @@ public class Employee {
   @Column(name = "employee_id", nullable = false)
   private Long id;
 
-  private String identification;
+  @Column(unique = true, nullable = false)
+  private Long identification;
+
+  @Column(nullable = false)
   private String name;
+
+  @Column(nullable = false)
   private String lastName;
+
+  @Column(nullable = false)
   private String email;
 }
