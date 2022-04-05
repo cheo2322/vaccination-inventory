@@ -1,6 +1,6 @@
 package com.kruger.employee.vaccination.inventory.entity;
 
-public enum VaccinationState {
+public enum VaccinationStatus {
   NOT_VACCINATED,
   VACCINATED
 }

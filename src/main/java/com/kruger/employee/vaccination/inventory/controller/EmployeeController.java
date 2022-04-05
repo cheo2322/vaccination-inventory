@@ -2,7 +2,7 @@ package com.kruger.employee.vaccination.inventory.controller;
 
 import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeDto;
 import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeResponse;
-import com.kruger.employee.vaccination.inventory.service.AdminService;
+import com.kruger.employee.vaccination.inventory.service.EmployeeService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,38 +19,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class EmployeeController {
 
   @Autowired
-  AdminService adminService;
+  EmployeeService employeeService;
 
   @PostMapping("/employees")
   @ResponseStatus(HttpStatus.CREATED)
   public EmployeeResponse postEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
-    return adminService.createEmployee(employeeDto);
+    return employeeService.createEmployee(employeeDto);
   }
 
   @PatchMapping("/employees/{id}")
   @ResponseStatus(HttpStatus.OK)
   public void patchEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable String id) {
-    adminService.updateEmployee(employeeDto, id);
+    employeeService.updateEmployee(employeeDto, id);
   }
 
   @GetMapping("/employees/{id}")
   @ResponseStatus(HttpStatus.OK)
   public EmployeeDto getEmployee(@PathVariable String id) {
-    return adminService.getEmployeeById(id);
+    return employeeService.getEmployeeById(id);
   }
 
   @GetMapping("/employees")
   @ResponseStatus(HttpStatus.OK)
   public List<EmployeeDto> getEmployees() {
-    return adminService.getEmployees();
+    return employeeService.getEmployees();
   }
 
   @DeleteMapping("/employees")
   @ResponseStatus(HttpStatus.OK)
   public void deleteEmployee(String id) {
-    adminService.deleteEmployee(id);
+    employeeService.deleteEmployee(id);
+  }
+
+  @GetMapping("/employees/status/{status}")
+  @ResponseStatus(HttpStatus.OK)
+  public List<EmployeeDto> getEmployeesByVaccinationStatus(@PathVariable String status) {
+    return employeeService.getEmployeesByVaccinationStatus(status);
+  }
+
+  @GetMapping("/employees/vaccine/{type}")
+  @ResponseStatus(HttpStatus.OK)
+  public List<EmployeeDto> getEmployeesByVaccineType(@PathVariable String type) {
+    return employeeService.getEmployeesByVaccinationType(type);
   }
 }

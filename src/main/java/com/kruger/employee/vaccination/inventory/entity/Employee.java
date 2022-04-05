@@ -14,11 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "employees")
+@ToString
 public class Employee {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +31,8 @@ public class Employee {
   @Column(unique = true, nullable = false)
   private Long identification;
 
-  @Column(nullable = false)
-  private String name;
+  @Column(name = "first_name", nullable = false)
+  private String firstName;
 
   @Column(name = "last_name", nullable = false)
   private String lastName;
@@ -42,7 +44,7 @@ public class Employee {
   private LocalDate bornDate;
   private String address;
   private String mobilePhone;
-  private VaccinationState vaccinationState;
+  private VaccinationStatus vaccinationStatus;
 
   @OneToMany(targetEntity = Vaccine.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinColumn(name = "vaccine_employee_id", referencedColumnName = "employee_id")
