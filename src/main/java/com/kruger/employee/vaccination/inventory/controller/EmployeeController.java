@@ -5,6 +5,7 @@ import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeGetResponse;
 import com.kruger.employee.vaccination.inventory.domain.dto.EmployeePostResponse;
 import com.kruger.employee.vaccination.inventory.service.EmployeeService;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,15 +57,25 @@ public class EmployeeController {
     employeeService.deleteEmployee(id);
   }
 
-  @GetMapping("/employees/status/{status}")
+  @GetMapping("/employees/vaccine/status")
   @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeGetResponse> getEmployeesByVaccinationStatus(@PathVariable String status) {
-    return employeeService.getEmployeesByVaccinationStatus(status);
+  public Set<EmployeeGetResponse> getEmployeesByVaccinationStatus(
+      @RequestParam String vaccinationStatus) {
+
+    return employeeService.getEmployeesByVaccinationStatus(vaccinationStatus);
   }
 
-  @GetMapping("/employees/vaccine/{type}")
+  @GetMapping("/employees/vaccine/type")
   @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeGetResponse> getEmployeesByVaccineType(@PathVariable String type) {
-    return employeeService.getEmployeesByVaccinationType(type);
+  public Set<EmployeeGetResponse> getEmployeesByVaccineType(@RequestParam String vaccineType) {
+    return employeeService.getEmployeesByVaccinationType(vaccineType);
+  }
+
+  @GetMapping("/employees/vaccine/date")
+  @ResponseStatus(HttpStatus.OK)
+  public Set<EmployeeGetResponse> getEmployeesInADateRange(@RequestParam String startDate,
+      @RequestParam String finalDate) {
+
+    return employeeService.getEmployeesInARangeDate(startDate, finalDate);
   }
 }

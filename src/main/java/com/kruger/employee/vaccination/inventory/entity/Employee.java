@@ -49,6 +49,8 @@ public class Employee {
   @Column(name = "vaccination_status")
   private VaccinationStatus vaccinationStatus;
 
+  private String role;
+
   @OneToMany(targetEntity = Vaccine.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
   private List<Vaccine> vaccines;

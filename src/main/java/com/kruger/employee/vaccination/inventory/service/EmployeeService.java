@@ -8,8 +8,10 @@ import com.kruger.employee.vaccination.inventory.entity.VaccinationStatus;
 import com.kruger.employee.vaccination.inventory.entity.VaccineType;
 import com.kruger.employee.vaccination.inventory.mapper.EmployeeMapper;
 import com.kruger.employee.vaccination.inventory.repository.EmployeeRepository;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +25,20 @@ public class EmployeeService {
   @Autowired
   EmployeeRepository employeeRepository;
 
-  @Autowired
-  EmployeeMapper employeeMapper;
-
   public EmployeePostResponse createEmployee(EmployeeDto employeeDto) {
-    Employee employee = employeeRepository.save(employeeMapper.dtoToEmployee(employeeDto));
+    Employee employee = employeeRepository.save(EmployeeMapper.INSTANCE.dtoToEmployee(employeeDto));
 
-    return EmployeePostResponse.builder()
-        .userName(employee.getIdentification().toString())
-        .password(UUID.randomUUID().toString().split("-")[0])
-        .build();
+    EmployeePostResponse response = EmployeeMapper.INSTANCE.employeeToPostResponse(employee);
+    response.setPassword(UUID.randomUUID().toString().split("-")[0]);
+
+    return response;
   }
 
   public void updateEmployee(EmployeeDto employeeDto, String id) {
     Employee employee = employeeRepository.findByIdentification(Long.valueOf(id))
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-    employeeMapper.updateEmployeeFromDto(employeeDto, employee);
+    EmployeeMapper.INSTANCE.updateEmployeeFromDto(employeeDto, employee);
     employee.getVaccines().addAll(Objects.nonNull(employeeDto.getVaccines()) ?
         employeeDto.getVaccines() :
         List.of());
@@ -49,13 +48,13 @@ public class EmployeeService {
 
   public EmployeeGetResponse getEmployeeById(String id) {
     return employeeRepository.findByIdentification(Long.valueOf(id))
-        .map(employeeMapper::employeeToResponse)
+        .map(EmployeeMapper.INSTANCE::employeeToResponse)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
   public List<EmployeeGetResponse> getEmployees() {
     return employeeRepository.findAll()
-        .stream().map(employeeMapper::employeeToResponse)
+        .stream().map(EmployeeMapper.INSTANCE::employeeToResponse)
         .collect(Collectors.toList());
   }
 
@@ -66,15 +65,24 @@ public class EmployeeService {
     employeeRepository.delete(employee);
   }
 
-  public List<EmployeeGetResponse> getEmployeesByVaccinationStatus(String status) {
+  public Set<EmployeeGetResponse> getEmployeesByVaccinationStatus(String status) {
     return employeeRepository.findByVaccinationStatus(VaccinationStatus.valueOf(status))
-        .stream().map(employeeMapper::employeeToResponse)
-        .collect(Collectors.toList());
+        .stream().map(EmployeeMapper.INSTANCE::employeeToResponse)
+        .collect(Collectors.toSet());
   }
 
-  public List<EmployeeGetResponse> getEmployeesByVaccinationType(String vaccineType) {
+  public Set<EmployeeGetResponse> getEmployeesByVaccinationType(String vaccineType) {
     return employeeRepository.findByVaccineType(VaccineType.valueOf(vaccineType).ordinal())
-        .stream().map(employeeMapper::employeeToResponse)
-        .collect(Collectors.toList());
+        .stream().map(EmployeeMapper.INSTANCE::employeeToResponse)
+        .collect(Collectors.toSet());
+  }
+
+  public Set<EmployeeGetResponse> getEmployeesInARangeDate(String startDate,
+      String finalDate) {
+
+    return employeeRepository
+        .findByVaccinationDate(LocalDate.parse(startDate), LocalDate.parse(finalDate))
+        .stream().map(EmployeeMapper.INSTANCE::employeeToResponse)
+        .collect(Collectors.toSet());
   }
 }
