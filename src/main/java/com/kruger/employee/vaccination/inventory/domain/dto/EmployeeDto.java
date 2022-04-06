@@ -37,6 +37,5 @@ public class EmployeeDto {
   private String address;
   private String mobilePhone;
   private VaccinationStatus vaccinationStatus;
-  private Vaccine vaccine;
   private List<Vaccine> vaccines;
 }

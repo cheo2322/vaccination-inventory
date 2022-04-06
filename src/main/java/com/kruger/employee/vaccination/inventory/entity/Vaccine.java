@@ -9,13 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "employee_vaccines")
-@ToString
 public class Vaccine {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +21,12 @@ public class Vaccine {
   @Column(name = "vaccine_id", nullable = false)
   private Long id;
 
+  @Column(name = "vaccine_type", nullable = false)
   private VaccineType vaccineType;
+
+  @Column(name = "vaccination_date", nullable = false)
   private LocalDate vaccinationDate;
+
+  @Column(name = "doses_number", nullable = false)
   private Integer dosesNumber;
 }

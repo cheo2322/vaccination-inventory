@@ -14,13 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "employees")
-@ToString
 public class Employee {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,11 +40,16 @@ public class Employee {
 
   @Column(name = "born_date")
   private LocalDate bornDate;
+
   private String address;
+
+  @Column(name = "mobile_phone")
   private String mobilePhone;
+
+  @Column(name = "vaccination_status")
   private VaccinationStatus vaccinationStatus;
 
   @OneToMany(targetEntity = Vaccine.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinColumn(name = "vaccine_employee_id", referencedColumnName = "employee_id")
+  @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
   private List<Vaccine> vaccines;
 }

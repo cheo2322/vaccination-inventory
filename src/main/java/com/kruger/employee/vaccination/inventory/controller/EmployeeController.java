@@ -1,7 +1,8 @@
 package com.kruger.employee.vaccination.inventory.controller;
 
 import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeDto;
-import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeResponse;
+import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeGetResponse;
+import com.kruger.employee.vaccination.inventory.domain.dto.EmployeePostResponse;
 import com.kruger.employee.vaccination.inventory.service.EmployeeService;
 import java.util.List;
 import javax.validation.Valid;
@@ -26,7 +27,7 @@ public class EmployeeController {
 
   @PostMapping("/employees")
   @ResponseStatus(HttpStatus.CREATED)
-  public EmployeeResponse postEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
+  public EmployeePostResponse postEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
     return employeeService.createEmployee(employeeDto);
   }
 
@@ -38,13 +39,13 @@ public class EmployeeController {
 
   @GetMapping("/employees/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public EmployeeDto getEmployee(@PathVariable String id) {
+  public EmployeeGetResponse getEmployee(@PathVariable String id) {
     return employeeService.getEmployeeById(id);
   }
 
   @GetMapping("/employees")
   @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeDto> getEmployees() {
+  public List<EmployeeGetResponse> getEmployees() {
     return employeeService.getEmployees();
   }
 
@@ -56,13 +57,13 @@ public class EmployeeController {
 
   @GetMapping("/employees/status/{status}")
   @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeDto> getEmployeesByVaccinationStatus(@PathVariable String status) {
+  public List<EmployeeGetResponse> getEmployeesByVaccinationStatus(@PathVariable String status) {
     return employeeService.getEmployeesByVaccinationStatus(status);
   }
 
   @GetMapping("/employees/vaccine/{type}")
   @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeDto> getEmployeesByVaccineType(@PathVariable String type) {
+  public List<EmployeeGetResponse> getEmployeesByVaccineType(@PathVariable String type) {
     return employeeService.getEmployeesByVaccinationType(type);
   }
 }

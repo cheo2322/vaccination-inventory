@@ -1,6 +1,7 @@
 package com.kruger.employee.vaccination.inventory.mapper;
 
 import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeDto;
+import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeGetResponse;
 import com.kruger.employee.vaccination.inventory.entity.Employee;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -19,7 +20,7 @@ public interface EmployeeMapper {
   void updateEmployeeFromDto(EmployeeDto employeeDto, @MappingTarget Employee employee);
 
   @Mapping(source = "identification", target = "identification", qualifiedByName = "addZero")
-  EmployeeDto employeeToDto(Employee employee);
+  EmployeeGetResponse employeeToResponse(Employee employee);
 
   @Named("addZero")
   default String addZero(Long id) {
