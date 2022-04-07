@@ -32,9 +32,10 @@ public class User {
   @Column(unique = true, nullable = false)
   private Long identification;
 
-  @Column(unique = true)
+  @Column(unique = true, nullable = false)
   private String username;
 
+  @Column(nullable = false)
   private String password;
 
   @Column(name = "first_name", nullable = false)
