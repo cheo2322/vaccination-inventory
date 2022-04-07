@@ -8,6 +8,7 @@ import com.kruger.employee.vaccination.inventory.entity.VaccinationStatus;
 import com.kruger.employee.vaccination.inventory.entity.VaccineType;
 import com.kruger.employee.vaccination.inventory.mapper.UserMapper;
 import com.kruger.employee.vaccination.inventory.repository.UserRepository;
+import com.kruger.employee.vaccination.inventory.security.UserDetailsImpl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -16,14 +17,25 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class InventoryService {
+public class InventoryService implements UserDetailsService {
 
   @Autowired
   UserRepository userRepository;
+
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user = userRepository.findByUsername(username)
+        .orElseThrow(() -> new UsernameNotFoundException("Could not find user."));
+
+    return new UserDetailsImpl(user);
+  }
 
   public UserPostResponse createEmployee(UserDto userDto) {
     User user = userRepository.save(UserMapper.INSTANCE.dtoToEmployee(userDto));
