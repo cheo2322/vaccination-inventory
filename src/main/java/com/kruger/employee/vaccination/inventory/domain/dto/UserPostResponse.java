@@ -13,6 +13,6 @@ import lombok.Setter;
 @Builder
 public class UserPostResponse {
 
-  private String userName;
+  private String username;
   private String password;
 }

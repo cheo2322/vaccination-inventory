@@ -18,9 +18,10 @@ public interface UserMapper {
 
   UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-  @Mapping(source = "identification", target = "userName", qualifiedByName = "addZero")
+  @Mapping(target = "username", qualifiedByName = "generateUsername", ignore = true)
   UserPostResponse employeeToPostResponse(User user);
 
+  @Mapping(target = "username", qualifiedByName = "generateUsernameDto", ignore = true)
   User dtoToEmployee(UserDto userDto);
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -38,5 +39,19 @@ public interface UserMapper {
     }
 
     return stringId;
+  }
+
+  @Named("generateUsername")
+  default String generateUsername(User user) {
+    return user.getLastName().substring(0, 1)
+        .concat(user.getFirstName().substring(0, 1))
+        .concat(user.getIdentification().toString());
+  }
+
+  @Named("generateUsernameDto")
+  default String generateUsernameDto(UserDto userDto) {
+    return userDto.getLastName().substring(0, 1)
+        .concat(userDto.getFirstName().substring(0, 1))
+        .concat(userDto.getIdentification());
   }
 }

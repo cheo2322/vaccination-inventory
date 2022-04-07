@@ -1,23 +1,23 @@
-INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password)
-VALUES ('0701234567', 'Sergio', 'H', 'x@y.z', 0, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW');
+INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password, username)
+VALUES ('0701234567', 'Sergio', 'H', 'x@y.z', 0, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW', 'HS01');
 
-INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password)
-VALUES ('1023123454', 'Joshue', 'M', 'a@b.c', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW');
+INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password, username)
+VALUES ('1023123454', 'Joshue', 'M', 'a@b.c', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW', 'MJ02');
 
-INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password)
-VALUES ('3423123454', 'Osiris', 'P', 'a@b.c', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW');
+INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password, username)
+VALUES ('3423123454', 'Osiris', 'P', 'a@b.c', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW', 'PO03');
 
-INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password)
-VALUES ('2023123454', 'Willy', 'A', 'i@j.k', 0, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW');
+INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password, username)
+VALUES ('2023123454', 'Willy', 'A', 'i@j.k', 0, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW', 'AW04');
 
-INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password)
-VALUES ('5023123454', 'Pol', 'C', 't@j.k', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW');
+INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password, username)
+VALUES ('5023123454', 'Pol', 'C', 't@j.k', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW', 'CP05');
 
-INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password)
-VALUES ('6023123454', 'Joni', 'C', 't@j.k', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW');
+INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password, username)
+VALUES ('6023123454', 'Joni', 'C', 't@j.k', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW', 'CJ06');
 
-INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password)
-VALUES ('7823123454', 'Perro', 'C', 't@j.k', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW');
+INSERT INTO users (identification, first_name, last_name, email, vaccination_status, password, username)
+VALUES ('7823123454', 'Perro', 'C', 't@j.k', 1, '$2a$12$lV2ae2YtprwdS2MXXfLmIehcyg0cu4dHfyA8EVdE7GM5RQoVCtUfW', 'CP07');
 
 -----------------------------------------------------------------------------------------
 

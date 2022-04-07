@@ -12,6 +12,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   Optional<User> findByIdentification(Long identification);
 
+  Optional<User> findByUsername(String username);
+
   List<User> findByVaccinationStatus(VaccinationStatus vaccinationStatus);
 
   @Query(
