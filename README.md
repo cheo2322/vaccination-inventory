@@ -1,6 +1,6 @@
-#Inventario de vacunación de empleados
+# Employees vaccination inventory
 
-###Previous steps
+### Previous steps
 
 * You must have Java 11 or greater installed in your system to run this project.
 * Create a postgresql database into your local system and save its properties
@@ -12,13 +12,13 @@
     
     SPRING_DATABASE_PASSWORD=<database_password>
 
-###Building and testing
+### Building and testing
 
 ```
 $ ./mvnw clean install
 ```
 
-###Running the project
+### Running the project
 
 1. If you want to load data into database when running the project, please
 include the content of ```/src/main/resources/data.txt``` into 
@@ -48,10 +48,10 @@ retrieve data from ```/api/employees/{id}```.
     could go into ```/src/main/resources``` where you have a Postman Collection with several
     requests ready to be used.
    
-###OpenApi
+### OpenApi
 Navigate to ```http://localhost:8080/swagger-ui/index.html``` to check the openapi definition
 
-###Technical debts
+### Technical debts
 * Some unit/integration tests
 * Testing using mocks instead of real scenarios
 * Testing using in-memory database (H2) instead real database
