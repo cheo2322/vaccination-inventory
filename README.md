@@ -47,3 +47,14 @@ retrieve data from ```/api/employees/{id}```.
     deactivate Spring Security Configuration and all endpoints will be available to test. You
     could go into ```/src/main/resources``` where you have a Postman Collection with several
     requests ready to be used.
+   
+###OpenApi
+Navigate to ```http://localhost:8080/swagger-ui/index.html``` to check the openapi definition
+
+###Technical debts
+* Some unit/integration tests
+* Testing using mocks instead of real scenarios
+* Testing using in-memory database (H2) instead real database
+* Use of OAuth2 instead of Spring Security
+* Simple front-end for a proper manual testing of endpoints
+* Proper preloading data (```schema.sql``` and ```data.sql```) into database when run the project
