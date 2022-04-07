@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EmployeeDto {
+public class UserDto {
 
   @NotBlank
   @Length(min = 10, max = 10)

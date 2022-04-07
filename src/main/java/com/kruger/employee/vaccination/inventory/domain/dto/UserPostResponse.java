@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EmployeePostResponse {
+public class UserPostResponse {
 
   private String userName;
   private String password;

@@ -18,12 +18,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "employees")
-public class Employee {
+@Table(name = "users")
+public class User {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  @Column(name = "employee_id", nullable = false)
+  @Column(name = "user_id", nullable = false)
   private Long id;
 
   @Column(unique = true, nullable = false)
@@ -52,6 +52,6 @@ public class Employee {
   private String role;
 
   @OneToMany(targetEntity = Vaccine.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+  @JoinColumn(name = "user_id", referencedColumnName = "user_id")
   private List<Vaccine> vaccines;
 }

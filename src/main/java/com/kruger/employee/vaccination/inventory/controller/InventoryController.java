@@ -1,9 +1,9 @@
 package com.kruger.employee.vaccination.inventory.controller;
 
-import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeDto;
-import com.kruger.employee.vaccination.inventory.domain.dto.EmployeeGetResponse;
-import com.kruger.employee.vaccination.inventory.domain.dto.EmployeePostResponse;
-import com.kruger.employee.vaccination.inventory.service.EmployeeService;
+import com.kruger.employee.vaccination.inventory.domain.dto.UserDto;
+import com.kruger.employee.vaccination.inventory.domain.dto.UserGetResponse;
+import com.kruger.employee.vaccination.inventory.domain.dto.UserPostResponse;
+import com.kruger.employee.vaccination.inventory.service.InventoryService;
 import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
@@ -22,60 +22,60 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/admin")
-public class EmployeeController {
+public class InventoryController {
 
   @Autowired
-  EmployeeService employeeService;
+  InventoryService inventoryService;
 
   @PostMapping("/employees")
   @ResponseStatus(HttpStatus.CREATED)
-  public EmployeePostResponse postEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
-    return employeeService.createEmployee(employeeDto);
+  public UserPostResponse postEmployee(@RequestBody @Valid UserDto userDto) {
+    return inventoryService.createEmployee(userDto);
   }
 
   @PatchMapping("/employees/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public void patchEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable String id) {
-    employeeService.updateEmployee(employeeDto, id);
+  public void patchEmployee(@RequestBody UserDto userDto, @PathVariable String id) {
+    inventoryService.updateEmployee(userDto, id);
   }
 
   @GetMapping("/employees/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public EmployeeGetResponse getEmployee(@PathVariable String id) {
-    return employeeService.getEmployeeById(id);
+  public UserGetResponse getEmployee(@PathVariable String id) {
+    return inventoryService.getEmployeeById(id);
   }
 
   @GetMapping("/employees")
   @ResponseStatus(HttpStatus.OK)
-  public List<EmployeeGetResponse> getEmployees() {
-    return employeeService.getEmployees();
+  public List<UserGetResponse> getEmployees() {
+    return inventoryService.getEmployees();
   }
 
   @DeleteMapping("/employees")
   @ResponseStatus(HttpStatus.OK)
   public void deleteEmployee(String id) {
-    employeeService.deleteEmployee(id);
+    inventoryService.deleteEmployee(id);
   }
 
   @GetMapping("/employees/vaccine/status")
   @ResponseStatus(HttpStatus.OK)
-  public Set<EmployeeGetResponse> getEmployeesByVaccinationStatus(
+  public Set<UserGetResponse> getEmployeesByVaccinationStatus(
       @RequestParam String vaccinationStatus) {
 
-    return employeeService.getEmployeesByVaccinationStatus(vaccinationStatus);
+    return inventoryService.getEmployeesByVaccinationStatus(vaccinationStatus);
   }
 
   @GetMapping("/employees/vaccine/type")
   @ResponseStatus(HttpStatus.OK)
-  public Set<EmployeeGetResponse> getEmployeesByVaccineType(@RequestParam String vaccineType) {
-    return employeeService.getEmployeesByVaccinationType(vaccineType);
+  public Set<UserGetResponse> getEmployeesByVaccineType(@RequestParam String vaccineType) {
+    return inventoryService.getEmployeesByVaccinationType(vaccineType);
   }
 
   @GetMapping("/employees/vaccine/date")
   @ResponseStatus(HttpStatus.OK)
-  public Set<EmployeeGetResponse> getEmployeesInADateRange(@RequestParam String startDate,
+  public Set<UserGetResponse> getEmployeesInADateRange(@RequestParam String startDate,
       @RequestParam String finalDate) {
 
-    return employeeService.getEmployeesInARangeDate(startDate, finalDate);
+    return inventoryService.getEmployeesInARangeDate(startDate, finalDate);
   }
 }
